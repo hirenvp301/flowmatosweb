@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AccountLens: B2B Website Personalization Without the JS Overlay | flowmatos</title>
+<meta name="description" content="Every B2B channel responds to account intelligence. Your website doesn't. AccountLens resolves every inbound visitor to a Salesforce account in real time and injects account-aware content at AEM render time — with zero JS overlay.">
+<link rel="canonical" href="https://flowmatos.com/blog-accountlens">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="flowmatos">
+<meta property="og:title" content="AccountLens: B2B Website Personalization Without the JS Overlay | flowmatos">
+<meta property="og:description" content="Every B2B channel responds to account intelligence. Your website doesn't. AccountLens resolves every inbound visitor to a Salesforce account in real time and injects account-aware content at AEM render time — with zero JS overlay.">
+<meta property="og:url" content="https://flowmatos.com/blog-accountlens">
+<meta property="og:image" content="https://flowmatos.com/og/blog-accountlens.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AccountLens: B2B Website Personalization Without the JS Overlay | flowmatos">
+<meta name="twitter:description" content="Every B2B channel responds to account intelligence. Your website doesn't. AccountLens resolves every inbound visitor to a Salesforce account in real time and injects account-aware content at AEM render time — with zero JS overlay.">
+<meta name="twitter:image" content="https://flowmatos.com/og/blog-accountlens.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AccountLens: B2B Website Personalization Without the JS Overlay",
+  "description": "Every B2B channel responds to account intelligence. Your website does not. AccountLens resolves every inbound visitor to a Salesforce account in real time and injects account-aware content at AEM render time with zero JS overlay.",
+  "author": {"@type": "Person", "name": "Hiren Patel", "url": "https://www.linkedin.com/in/hirenvpatel/"},
+  "publisher": {"@type": "Organization", "name": "flowmatos"},
+  "datePublished": "2026-04-15",
+  "dateModified": "2026-04-15",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://flowmatos.com/blog/accountlens-b2b-website-personalization"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is B2B website personalization?",
+      "acceptedAnswer": {"@type": "Answer", "text": "B2B website personalization is the practice of serving different content to website visitors based on their company, industry, ICP tier, deal stage, and buying intent. Unlike consumer personalization which uses cookies and browsing history, B2B personalization resolves anonymous visitors to known CRM accounts using IP-to-company matching and reads account context in real time to serve account-aware content. The most effective implementations inject personalised content at server-side render time to eliminate content flicker."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Demandbase and AccountLens?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Demandbase provides account identification and intent data but delivers personalisation through a JavaScript snippet injected after page load, causing visible content flicker and operating outside the CMS content model. AccountLens integrates directly into the AEM server-side rendering pipeline, injecting personalised content before the page reaches the browser with zero JavaScript overlay. AccountLens also reads live Salesforce deal context — open opportunity value, deal stage, ICP tier — at render time, which Demandbase does not."}
+    },
+    {
+      "@type": "Question",
+      "name": "How does IP-to-company resolution work for website personalization?",
+      "acceptedAnswer": {"@type": "Answer", "text": "IP-to-company resolution works by matching the IP address of an inbound website visitor against a database of IP ranges associated with corporate networks. The resolution returns a company domain, company name, and industry classification. This domain is then matched against Salesforce Account records to retrieve CRM data. The process typically achieves 55-70% match rates on B2B traffic. Match rates are lower for visitors on VPNs, remote connections, or mobile networks."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is a JS overlay in website personalization and why is it a problem?",
+      "acceptedAnswer": {"@type": "Answer", "text": "A JavaScript overlay in website personalisation is a script injected into the page after initial load that swaps generic content for personalised content after the browser has already rendered the default experience. This causes visible content flicker — the user briefly sees generic content before it is replaced — which degrades user experience and signals to the visitor that the personalisation is applied as an afterthought. JS overlays also fail when ad blockers or browser privacy settings prevent script execution."}
+    },
+    {
+      "@type": "Question",
+      "name": "How does AccountLens measure pipeline impact?",
+      "acceptedAnswer": {"@type": "Answer", "text": "AccountLens measures pipeline impact by logging every personalised page impression with a full context envelope — account ID, variant served, confidence score, holdout flag — to an event stream. An attribution engine joins impression data against Salesforce opportunity creation and close events, comparing time-to-opportunity and win rates for accounts that received personalised experiences versus the 20% holdout control group. The output is pipeline velocity change, win rate lift, and account engagement depth — all measured in pipeline currency rather than clicks."}
+    }
+  ]
+}
+</script>
+<script>
+// ── Mobile nav ──────────────────────────────────────────────────────────────
+(function(){
+  var btn  = document.getElementById('nav-toggle');
+  var menu = document.getElementById('nav-mobile');
+  if(!btn || !menu) return;
+  var src = document.querySelector('.nav-links');
+  if(src) menu.innerHTML = src.innerHTML;
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-hidden', String(!open));
+  });
+  menu.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      menu.setAttribute('aria-hidden','true');
+    }
+  });
+})();
+</script>
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cyan:#00C8F8;--violet:#6B21FF;--amber:#FF5C35;--bg:#050918;--surface:#0D1428;--border:#1A2A45;--text:#E8EEFF;--muted:#6B7A99;--grad:linear-gradient(135deg,#00C8F8,#6B21FF)}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;font-size:17px;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(16px);background:rgba(5,9,24,.85);border-bottom:1px solid rgba(26,42,69,.7)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.wordmark{font-family:'Oxanium',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.5px}
+.wordmark .flow{color:var(--cyan)}.wordmark .matos{color:var(--text)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-cta{background:var(--grad);color:#fff;font-weight:600;font-size:13px;padding:10px 22px;border-radius:8px;border:none;cursor:pointer}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ARTICLE */
+.article-outer{max-width:800px;margin:0 auto;padding:120px 5% 80px}
+.article-category{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:20px}
+.article-outer h1{font-family:'Oxanium',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px;color:var(--text)}
+.article-meta{display:flex;align-items:center;gap:12px;margin-bottom:32px;flex-wrap:wrap;font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.article-meta a{color:var(--cyan);display:inline-flex;align-items:center;gap:6px}
+.meta-sep{color:var(--border)}
+.article-intro{font-size:18px;color:var(--muted);line-height:1.7;margin-bottom:40px;padding:24px;background:var(--surface);border-left:3px solid var(--cyan);border-radius:0 12px 12px 0}
+.article-outer h2{font-family:'Oxanium',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.5px;margin:48px 0 16px;color:var(--text)}
+.article-outer h3{font-family:'Oxanium',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.3px;margin:32px 0 12px;color:var(--text)}
+.article-outer p{margin-bottom:18px;color:var(--muted)}
+.article-outer strong{color:var(--text);font-weight:600}
+.article-outer a.inline{color:var(--cyan)}
+.article-outer ul,.article-outer ol{margin:16px 0 18px 24px;color:var(--muted)}
+.article-outer li{margin-bottom:8px;line-height:1.65}
+
+/* CALLOUTS */
+.stat-callout{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;margin:40px 0;display:flex;gap:24px;align-items:flex-start}
+.stat-callout .stat-num{font-family:'Oxanium',sans-serif;font-size:52px;font-weight:800;letter-spacing:-2px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;flex-shrink:0;min-width:120px}
+.stat-callout .stat-text{font-size:15px;color:var(--muted);line-height:1.65;padding-top:8px}
+.wf-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin:24px 0;position:relative;overflow:hidden}
+.wf-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad)}
+.wf-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1px;margin-bottom:8px}
+.wf-card h3{font-family:'Oxanium',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px;color:var(--text)}
+.wf-card p{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:0}
+.bluf-box{background:rgba(0,200,248,.06);border:1px solid rgba(0,200,248,.2);border-radius:12px;padding:20px 24px;margin:24px 0;font-size:15px;line-height:1.65}
+.bluf-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1.5px;margin-bottom:8px}
+
+/* FAQ */
+.faq-section{margin-top:64px;padding-top:48px;border-top:1px solid var(--border)}
+.faq-section h2{font-family:'Oxanium',sans-serif;font-size:28px;font-weight:700;letter-spacing:-.5px;margin-bottom:28px;color:var(--text)}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
+.faq-q{font-family:'Oxanium',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;color:var(--text)}
+.faq-a{font-size:15px;color:var(--muted);line-height:1.7}
+
+/* CTA BOX */
+.article-cta{background:var(--surface);border:1px solid rgba(0,200,248,.3);border-radius:20px;padding:40px;margin:60px 0;text-align:center}
+.article-cta h2{font-family:'Oxanium',sans-serif;font-size:28px;font-weight:700;letter-spacing:-.5px;margin-bottom:12px}
+.article-cta p{font-size:15px;color:var(--muted);margin-bottom:24px;line-height:1.65}
+.btn-primary{background:var(--grad);color:#fff;font-weight:600;font-size:15px;padding:13px 28px;border-radius:10px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary{background:transparent;color:var(--text);font-weight:500;font-size:14px;padding:13px 24px;border-radius:10px;border:1px solid var(--border);cursor:pointer;display:inline-flex;align-items:center;gap:8px;margin-left:12px}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* BACK LINK */
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin-bottom:32px;transition:color .2s}
+.back-link:hover{color:var(--cyan)}
+
+footer{background:var(--surface);border-top:1px solid var(--border);padding:48px 5%}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-links{display:flex;gap:28px}
+.footer-links a{font-size:13px;color:var(--muted)}
+.footer-copy{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin:24px auto 0;text-align:center;opacity:.6;max-width:1280px}
+@media(max-width:900px){.nav-links{display:none}.stat-callout{flex-direction:column}}
+
+
+/* ── Social share bar ── */
+.share-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:48px 0;padding:22px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.share-bar .share-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.share-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--border);border-radius:11px;color:var(--muted);background:var(--surface);transition:color .2s,border-color .2s,transform .2s;cursor:pointer;padding:0}
+.share-btn:hover{color:var(--text);border-color:var(--cyan);transform:translateY(-2px)}
+.share-btn svg{width:18px;height:18px}
+.share-btn.copied{color:var(--cyan);border-color:var(--cyan)}
+.share-toast{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);opacity:0;transition:opacity .2s;margin-left:2px}
+.share-toast.show{opacity:1}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><defs><linearGradient id="g1" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#00C8F8"/><stop offset="100%" stop-color="#6B21FF"/></linearGradient></defs><path d="M13 38 C13 24 35 24 35 10" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="13" cy="38" r="5" fill="#00C8F8"/><circle cx="35" cy="10" r="5" fill="#6B21FF"/></svg>
+    <div class="wordmark"><span class="flow">flow</span><span class="matos">matos</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#workflows">Workflows</a>
+    <a href="index.html#products">Products</a>
+    
+    <a href="about.html">About</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="index.html#early-access" class="nav-cta">Get early access</a>
+  </div>
+</nav>
+<div class="article-outer">
+  <a href="blog.html" class="back-link">← Back to blog</a>
+  
+  <header class="article-header">
+    <span class="article-category">B2B Website Personalization · AccountLens</span>
+    <h1>AccountLens: B2B Website Personalization Without the JS Overlay</h1>
+    <div class="article-meta">
+            <a href="https://www.linkedin.com/in/hirenvpatel/" target="_blank" rel="author" style="color:var(--cyan);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Hiren Patel
+      </a><span class="meta-sep">·</span>
+      <time datetime="2026-04-15">April 2026</time><span class="meta-sep">·</span>
+      <span>12 min read</span>
+    </div>
+    <p class="article-intro">Your ABM program knows exactly which accounts to prioritise. Your events team knows which companies attended. Your sales team gets account-specific briefings before every call. And then every one of those accounts visits your website and sees the exact same page as everyone else. AccountLens closes that gap — natively, inside AEM, without a JavaScript overlay.</p>
+  </header>
+
+  <div class="stat-callout">
+    <div class="stat-num">96%</div>
+    <div class="stat-text"><strong>of B2B website visitors see a generic page regardless of who they are.</strong> Company, industry, deal stage, ICP tier — the website is blind to all of it. It is the only channel in the enterprise marketing stack that does not respond to account intelligence.</div>
+  </div>
+
+  <h2>The gap at the centre of every ABM program</h2>
+  <p>Account-based marketing has matured into a sophisticated discipline. Enterprise teams maintain tiered account lists, deploy field marketing resources specifically to named accounts, run targeted paid campaigns against account audiences, and train sales teams to research and personalise every touchpoint. The investment is real and the results are measurable.</p>
+  <p>The website sits outside all of it. It is the highest-traffic channel in the demand generation mix — the place where the impact of every other activity eventually lands — and it serves a single static experience to every visitor. A Fortune 100 enterprise in late-stage evaluation of a $2 million deal sees the same homepage headline, the same customer logo wall, and the same call-to-action as a first-time anonymous visitor exploring free tier options.</p>
+  <p>This is not a resource problem. It is an architecture problem. The account intelligence exists — in Salesforce, in Adobe AEP, in the intent data platform. The content exists — in the AEM content model, authored and approved, sitting unpublished against most audience signals. What has been missing is an orchestration layer that connects the two at render time.</p>
+
+  <h2>Why existing personalisation tools have not solved this</h2>
+  <p>Demandbase, Mutiny, and similar tools have been the standard answer to B2B website personalisation for years. They are well-funded, widely adopted, and genuinely useful. They are also architecturally limited in ways that matter significantly for enterprise deployments.</p>
+
+  <div class="compare-grid">
+    <div class="compare-card bad">
+      <div class="compare-label">LEGACY APPROACH · JS OVERLAY</div>
+      <h3>How Demandbase and Mutiny work</h3>
+      <ul>
+        <li>JavaScript snippet injected after page load</li>
+        <li>Generic content renders first, then swaps</li>
+        <li>Visible flicker on every personalised page</li>
+        <li>Blocked by ad blockers and privacy tools</li>
+        <li>Outside the AEM content model entirely</li>
+        <li>No live CRM deal context at render time</li>
+        <li>No LLM-generated variant capability</li>
+        <li>Measures clicks — not pipeline</li>
+      </ul>
+    </div>
+    <div class="compare-card good">
+      <div class="compare-label">ACCOUNTLENS · CMS-NATIVE</div>
+      <h3>How AccountLens works</h3>
+      <ul>
+        <li>Server-side render hook inside AEM</li>
+        <li>Right content at first paint — always</li>
+        <li>Zero content flicker, ever</li>
+        <li>Works across all browsers and privacy settings</li>
+        <li>Native to the AEM content model</li>
+        <li>Live Salesforce deal context at every render</li>
+        <li>LLM variant generation for unmatched contexts</li>
+        <li>Measures pipeline velocity and win rate</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout"><strong>The architectural difference matters.</strong> A JS overlay is a patch applied to a generic page. AccountLens is a native rendering decision — the right content is assembled before HTML is sent to the browser. There is no version of the page that contains the wrong content.</div>
+
+  <h2>The four-agent architecture</h2>
+  <p>AccountLens is built as a sequence of four specialised agents, each with a defined scope and a hard latency budget. The full pipeline — from inbound request to personalised HTML — completes in under 50 milliseconds at the 95th percentile.</p>
+
+  <div class="agent-grid">
+    <div class="agent-card">
+      <div class="agent-num">AGENT 01</div>
+      <h3>Account Resolution</h3>
+      <p>Receives the inbound IP address, checks the three-layer account cache (in-memory → Redis → DynamoDB), and on a miss performs IP enrichment followed by a Salesforce domain match. Returns a context object containing: company name, industry, ICP tier, open opportunity status, opportunity value, deal stage, and AE owner. Latency target: p95 under 50ms.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">AGENT 02</div>
+      <h3>Audience and Intent</h3>
+      <p>Receives the account context object and enriches it with Adobe AEP signals: unified customer profile, segment membership, prior content consumption, and session behavioural history. Classifies the visitor by persona (economic buyer / technical evaluator / practitioner), funnel stage, and topic interest cluster. UTM campaign signals override inferred funnel stage when present.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">AGENT 03</div>
+      <h3>Content Decision (LLM)</h3>
+      <p>Receives the enriched context envelope and queries the AEM content index — a vector index of all published content fragments tagged with audience signals. Scores candidates against the context using a weighted formula (industry 35%, funnel stage 30%, ICP tier 20%, persona 15%). Variants scoring above 0.85 are selected. Below threshold, Claude on Amazon Bedrock generates compliant copy within the brand prompt framework.</p>
+    </div>
+    <div class="agent-card">
+      <div class="agent-num">AGENT 04</div>
+      <h3>Delivery and Test</h3>
+      <p>Injects the selected or generated content payload into the AEM Sling Model render hook before HTML is assembled. Maintains a 20% holdout group assigned by the orchestrator before any agent fires. Coordinates with Adobe Target for existing A/B activities. Triggers the async AE pre-call brief pipeline when a tracked account visits, pushing a brief to Salesforce activity and Slack.</p>
+    </div>
+  </div>
+
+  <h2>What AccountLens personalises</h2>
+  <p>AccountLens manages six content zones on each page. Each zone has a defined personalisation signal set and a fallback to the default authored content when confidence is below the selection threshold.</p>
+  <ul>
+    <li><strong>Hero headline and subheadline:</strong> Industry pain-led headline with ICP tier and funnel stage modifier. A Fortune 100 financial services company in late-stage evaluation sees a different headline than a mid-market technology company in awareness.</li>
+    <li><strong>Primary call-to-action text and destination:</strong> Deal-stage and persona-matched. An economic buyer in evaluation sees "Schedule an executive briefing." A technical evaluator sees "Review the architecture documentation."</li>
+    <li><strong>Customer logo wall:</strong> Industry-matched from the full set of published customer logos. A healthcare visitor sees healthcare logos. A financial services visitor sees financial services logos.</li>
+    <li><strong>Featured case study or social proof:</strong> Industry, company size, and use case matched. The highest-relevance case study for the visitor's context.</li>
+    <li><strong>Resource recommendations:</strong> Topic cluster and funnel stage matched. Early-stage visitors see educational content. Late-stage visitors see ROI calculators and implementation guides.</li>
+    <li><strong>Product messaging block:</strong> Feature emphasis matched to the visitor's likely evaluation criteria based on industry and persona classification.</li>
+  </ul>
+
+  <h2>How AccountLens measures success</h2>
+  <p>AccountLens is designed to be measured in pipeline currency, not marketing currency. The measurement architecture has three layers:</p>
+  <p><strong>Impression logging:</strong> Every variant served is logged to a Kinesis event stream with a full context envelope: account ID (non-personal), variant ID for each content zone, confidence score, holdout flag, and session timestamp.</p>
+  <p><strong>Attribution joins:</strong> An nightly attribution engine joins impression events to Salesforce opportunity creation events (same Account ID within a 30-day window) and to closed-won events. This produces pipeline velocity change — the difference in days-to-opportunity between treatment and holdout cohorts — and win rate lift — the difference in closed-won rates — segmented by ICP tier and industry vertical.</p>
+  <p><strong>AE pre-call brief:</strong> When any tracked account visits the site, an async pipeline assembles a brief — pages visited, variants served, content consumed, intent signals — and delivers it to the assigned AE in Salesforce as an activity record and in Slack as a direct message, 30 minutes before any scheduled meeting or within 15 minutes of the site visit.</p>
+
+  <h2>The 90-day milestones</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-badge">Day 30</div>
+      <div class="tl-content">
+        <h3>First personalised page live</h3>
+        <p>Homepage and top three product pages personalised for ICP Tier 1 and Tier 2 named accounts. Hero zone and CTA zone active. Holdout group running. Baseline pipeline metrics established.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-badge">Day 60</div>
+      <div class="tl-content">
+        <h3>Engagement lift visible</h3>
+        <p>Target account session depth up 20% over baseline. Form fill rate for Tier 1 accounts up 30%. AE pre-call brief adoption above 80%. All six content zones active. LLM variant generation live for unmatched contexts.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-badge">Day 90</div>
+      <div class="tl-content">
+        <h3>Pipeline signal measurable</h3>
+        <p>Pipeline velocity differential between treatment and holdout cohorts visible in the attribution dashboard. Win rate directional data across ICP tiers. Revenue influence attribution in Salesforce for all closed deals where AccountLens served a personalised experience within the 90-day window.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Who AccountLens is built for</h2>
+  <p>AccountLens is designed for enterprise marketing and demand generation teams that meet three criteria. First, they run a genuine account-based motion: a tiered named account list, ICP definitions, and Salesforce as the system of record for account and opportunity data. Second, their website is built on or managed through Adobe Experience Manager — either AEM as a Cloud Service or Adobe Managed Services. Third, they can point to a specific pipeline problem that website personalisation would address: target accounts that visit without converting, deals that stall between site visit and first meeting, AEs who go into calls without knowing which content the prospect consumed.</p>
+  <p>AccountLens is not the right tool for teams without AEM, without a structured ABM program, or without Salesforce as the CRM. For those teams, SignalMint — Workflow 02 in the flowmatos platform — is the right starting point. It requires nothing but an API key and runs in under 10 minutes.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <p class="faq-q">What is B2B website personalization?</p>
+      <p class="faq-a">B2B website personalization is the practice of serving different content to website visitors based on their company, industry, ICP tier, deal stage, and buying intent. Unlike consumer personalization, B2B personalization resolves anonymous visitors to known CRM accounts using IP-to-company matching and reads account context in real time. The most effective implementations inject personalised content at server-side render time — before the page reaches the browser — to eliminate content flicker and maintain CMS-native content governance.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What is the difference between AccountLens and Demandbase?</p>
+      <p class="faq-a">Demandbase provides account identification and intent data but delivers personalisation through a JavaScript snippet injected after page load, causing visible content flicker and operating outside the CMS content model. AccountLens integrates directly into the AEM server-side rendering pipeline, injecting personalised content before the page reaches the browser. AccountLens also reads live Salesforce deal context — open opportunity value, deal stage, ICP tier — at render time, enabling deal-context-aware personalisation that Demandbase does not provide.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What is a JS overlay in website personalization and why is it a problem?</p>
+      <p class="faq-a">A JavaScript overlay is a script that swaps generic content for personalised content after the browser has already rendered the default page. This causes visible content flicker — the user briefly sees generic content before the swap — and is blocked by ad blockers and browser privacy settings. JS overlays also operate outside the CMS content model, creating a parallel content system that is difficult to govern, audit, or roll back. AccountLens eliminates the JS overlay entirely by operating at AEM server-side render time.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How does AccountLens resolve visitors to Salesforce accounts?</p>
+      <p class="faq-a">AccountLens resolves visitors through a three-stage pipeline. First, it extracts the visitor IP address from the inbound request. Second, it calls an IP enrichment API (such as Clearbit Reveal or IPinfo) to resolve the IP to a company domain and name. Third, it queries Salesforce using a domain match and fuzzy company name match to retrieve the Account record. Results are cached at three layers — in-memory, Redis, and DynamoDB — with a 5-minute TTL to achieve p95 latency under 50 milliseconds.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How does AccountLens measure pipeline impact?</p>
+      <p class="faq-a">AccountLens measures pipeline impact through a controlled attribution approach. Every personalised page impression is logged with the account ID, variant served, and a holdout flag. A 20% holdout group receives the default experience throughout the measurement period. An attribution engine joins impression data to Salesforce opportunity creation and close events, comparing pipeline velocity and win rates between the treatment and holdout cohorts. This produces a direct measurement of the pipeline revenue impact attributable to personalisation — in pipeline currency, not clicks.</p>
+    </div>
+  </div>
+
+  <div class="share-bar">
+    <span class="share-label">Share</span>
+    <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fflowmatos.com%2Fblog-accountlens" onclick="fmTrackShare('linkedin')" target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fflowmatos.com%2Fblog-accountlens&amp;text=AccountLens%3A%20B2B%20Website%20Personalization%20Without%20the%20JS%20Overlay" onclick="fmTrackShare('x')" target="_blank" rel="noopener" aria-label="Share on X" title="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fflowmatos.com%2Fblog-accountlens&amp;title=AccountLens%3A%20B2B%20Website%20Personalization%20Without%20the%20JS%20Overlay" onclick="fmTrackShare('reddit')" target="_blank" rel="noopener" aria-label="Share on Reddit" title="Share on Reddit"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12c-.688 0-1.25.561-1.25 1.25 0 .687.562 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.095.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></a>
+    <a class="share-btn" href="mailto:?subject=AccountLens%3A%20B2B%20Website%20Personalization%20Without%20the%20JS%20Overlay&amp;body=https%3A%2F%2Fflowmatos.com%2Fblog-accountlens" onclick="fmTrackShare('email')" aria-label="Share by email" title="Share by email"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 4H2C.9 4 0 4.9 0 6v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-10 5L2 8V6l10 5 10-5v2z"/></svg></a>
+    <button class="share-btn" type="button" onclick="fmCopyLink(this)" aria-label="Copy link" title="Copy link"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
+    <span class="share-toast" id="share-toast">Copied!</span>
+  </div>
+
+  <div class="article-cta">
+    <h3>AccountLens is in private beta.</h3>
+    <p>We are working with a small group of enterprise marketing teams on AEM to co-build and validate the product. If you run a named account program on AEM and Salesforce, we would like to talk.</p>
+    <a href="/index.html#early-access" class="btn-cta">Request early access →</a>
+  </div>
+
+  <div class="article-cta">
+    <h2>Automate your marketing workflows</h2>
+    <p>SignalMint is live and free. AccountLens is taking design partners. CampaignMint is ready to use.</p>
+    <div class="cta-actions">
+      <a href="https://signalmint.flowmatos.com" target="_blank" class="btn-primary">Try SignalMint →</a>
+      <a href="index.html#early-access" class="btn-secondary">Get early access</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none"><defs><linearGradient id="fg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#00C8F8"/><stop offset="100%" stop-color="#6B21FF"/></linearGradient></defs><path d="M13 38 C13 24 35 24 35 10" stroke="url(#fg)" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="13" cy="38" r="5" fill="#00C8F8"/><circle cx="35" cy="10" r="5" fill="#6B21FF"/></svg>
+      <div class="wordmark"><span class="flow">flow</span><span class="matos">matos</span></div>
+    </a>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      
+      <a href="mailto:hiren@flowmatos.com">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 flowmatos, Inc. · flowmatos.com</div>
+</footer>
+
+<script>
+(function(){
+  window.fmTrackShare=function(network){
+    try{
+      var c=document.querySelector('link[rel="canonical"]');
+      var url=(c&&c.href)||location.href;
+      var slug=url.replace(/^https?:\/\/[^/]+\//,'').replace(/\/$/,'')||'home';
+      var payload={network:network,slug:slug,url:url};
+      if(typeof window.gtag==='function'){window.gtag('event','share',{method:network,content_type:'article',item_id:slug});}
+      (window.dataLayer=window.dataLayer||[]).push(Object.assign({event:'share'},payload));
+      if(typeof window.plausible==='function'){window.plausible('Share',{props:payload});}
+      if(window.fathom&&typeof window.fathom.trackEvent==='function'){window.fathom.trackEvent('Share '+network+' '+slug);}
+      window.dispatchEvent(new CustomEvent('fm:share',{detail:payload}));
+    }catch(e){}
+  };
+  window.fmCopyLink=function(btn){
+    var c=document.querySelector('link[rel="canonical"]');
+    var url=(c&&c.href)||location.href;
+    function done(){var t=document.getElementById('share-toast');btn.classList.add('copied');if(t)t.classList.add('show');window.fmTrackShare('copy');setTimeout(function(){btn.classList.remove('copied');if(t)t.classList.remove('show');},1800);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(function(){fb(url);done();});}else{fb(url);done();}
+    function fb(text){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+  };
+})();
+</script>
+</body>
+</html>

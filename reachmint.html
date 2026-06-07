@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Community Outreach Tool for Founders &amp; SaaS | ReachMint</title>
+<meta name="description" content="ReachMint's AI finds the exact communities where your audience discusses their pain points, writes authentic insight-first reply scripts, and tracks every interaction toward your goal.">
+<link rel="canonical" href="https://flowmatos.com/reachmint">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="flowmatos">
+<meta property="og:title" content="AI Community Outreach Tool for Founders &amp; SaaS | ReachMint">
+<meta property="og:description" content="ReachMint's AI finds the exact communities where your audience discusses their pain points, writes authentic insight-first reply scripts, and tracks every interaction toward your goal.">
+<meta property="og:url" content="https://flowmatos.com/reachmint">
+<meta property="og:image" content="https://flowmatos.com/og/reachmint.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Community Outreach Tool for Founders &amp; SaaS | ReachMint">
+<meta name="twitter:description" content="ReachMint's AI finds the exact communities where your audience discusses their pain points, writes authentic insight-first reply scripts, and tracks every interaction toward your goal.">
+<meta name="twitter:image" content="https://flowmatos.com/og/reachmint.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cyan:#00C8F8;--violet:#6B21FF;--amber:#FF5C35;--bg:#050918;--surface:#0D1428;--border:#1A2A45;--text:#E8EEFF;--muted:#6B7A99;--grad:linear-gradient(135deg,#00C8F8,#6B21FF)}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(16px);background:rgba(5,9,24,.85);border-bottom:1px solid rgba(26,42,69,.7)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.wordmark{font-family:'Oxanium',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.5px}
+.wordmark .flow{color:var(--cyan)}.wordmark .matos{color:var(--text)}
+.nav-slash{color:var(--border);margin:0 4px;font-size:18px}
+.nav-product{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cyan)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--grad);color:#fff;font-weight:600;font-size:13px;padding:10px 22px;border-radius:8px;border:none;cursor:pointer}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.section-title{font-family:'Oxanium',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:700;letter-spacing:-1.5px;line-height:1.08;margin-bottom:16px}
+.btn-primary{background:var(--grad);color:#fff;font-weight:600;font-size:15px;padding:14px 32px;border-radius:10px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary{background:transparent;color:var(--text);font-weight:500;font-size:15px;padding:14px 32px;border-radius:10px;border:1px solid var(--border);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+
+/* HERO */
+.hero{padding:140px 5% 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1280px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,248,.08);border:1px solid rgba(0,200,248,.2);border-radius:999px;padding:6px 16px;font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--cyan);margin-bottom:24px;letter-spacing:.5px}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite;display:inline-block}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.terminal{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:12px}
+.t-bar{background:rgba(26,42,69,.8);padding:12px 16px;display:flex;align-items:center;gap:8px}
+.t-dot{width:12px;height:12px;border-radius:50%}
+.t-title{color:var(--muted);font-size:11px;margin-left:4px}
+.t-body{padding:20px 24px}
+.t-line{padding:2px 0;line-height:1.7}
+.t-comment{color:#3a5066}.t-green{color:var(--cyan)}.t-amber{color:#FAC775}.t-white{color:var(--text)}.t-purple{color:#a578ff}.t-red{color:var(--amber)}
+.t-cursor{display:inline-block;width:7px;height:13px;background:var(--cyan);animation:blink 1.1s step-end infinite;vertical-align:text-bottom}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* SECTIONS */
+section{padding:80px 5%}
+.section-wrap{max-width:1280px;margin:0 auto}
+
+/* PIPELINE */
+.pipeline{display:flex;flex-direction:column;gap:0;margin-top:60px}
+.pipe-step{display:grid;grid-template-columns:64px 1fr;gap:0;position:relative}
+.pipe-step:not(:last-child)::after{content:'';position:absolute;left:31px;top:64px;bottom:0;width:1px;background:var(--border)}
+.pipe-circle{width:64px;height:64px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);position:relative;z-index:1;flex-shrink:0;font-weight:500;letter-spacing:.5px}
+.pipe-content{padding:12px 0 48px 28px}
+.pipe-content h3{font-family:'Oxanium',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px}
+.pipe-content p{font-size:15px;color:var(--muted);line-height:1.7;max-width:580px;margin-bottom:12px}
+.pipe-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(0,200,248,.08);border:1px solid rgba(0,200,248,.15);color:var(--cyan);font-size:11px;font-family:'JetBrains Mono',monospace;padding:4px 12px;border-radius:999px}
+
+/* COMMUNITY TABLE */
+.gap-table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:40px}
+.gap-table{width:100%;border-collapse:collapse}
+.gap-table th{background:rgba(26,42,69,.6);padding:14px 20px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;text-align:left;border-bottom:1px solid var(--border)}
+.gap-table td{padding:14px 20px;font-size:13px;border-bottom:1px solid rgba(26,42,69,.5)}
+.gap-table tr:last-child td{border-bottom:none}
+.platform-badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(107,33,255,.1);color:#a578ff;border:1px solid rgba(107,33,255,.2)}
+.tone-badge{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 10px;border-radius:999px;background:rgba(0,200,248,.08);color:var(--cyan);border:1px solid rgba(0,200,248,.15)}
+.query-text{font-size:12px;color:var(--muted);font-style:italic}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center}
+.stat-num{font-family:'Oxanium',sans-serif;font-size:40px;font-weight:800;letter-spacing:-1px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5}
+
+/* INSTALL */
+.install-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;margin-top:40px;font-family:'JetBrains Mono',monospace;font-size:13px}
+.install-box .t-line{padding:4px 0}
+
+/* CTA */
+.cta-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center;padding:80px 5%}
+.cta-inner{max-width:600px;margin:0 auto}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+
+footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 5%}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-links{display:flex;gap:28px}
+.footer-links a{font-size:13px;color:var(--muted)}
+.footer-copy{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin:24px auto 0;text-align:center;opacity:.6;max-width:1280px}
+@media(max-width:900px){.hero,.stats-row{grid-template-columns:1fr;gap:40px}.nav-links{display:none}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "ReachMint",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Community Outreach",
+      "operatingSystem": "Web",
+      "url": "https://flowmatos.com/reachmint",
+      "description": "AI-powered community outreach: discovers active communities where your audience talks about their pain points, generates tone-matched reply scripts, and tracks progress to goal.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://flowmatos.com/#org" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://flowmatos.com/" },
+        { "@type": "ListItem", "position": 2, "name": "ReachMint", "item": "https://flowmatos.com/reachmint" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><defs><linearGradient id="g1" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#00C8F8"/><stop offset="100%" stop-color="#6B21FF"/></linearGradient></defs><path d="M13 38 C13 24 35 24 35 10" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="13" cy="38" r="5" fill="#00C8F8"/><circle cx="35" cy="10" r="5" fill="#6B21FF"/></svg>
+    <div class="wordmark"><span class="flow">flow</span><span class="matos">matos</span></div>
+    <span class="nav-slash">/</span>
+    <span class="nav-product">ReachMint</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#workflows">Workflows</a>
+    <a href="index.html#products">Products</a>
+    
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="https://reachmint.flowmatos.com" target="_blank" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-badge"><span class="badge-dot"></span>Live · Try Free · Workflow 03</div>
+    <h1 class="section-title">Find where your audience <span class="grad-text">actually hangs out</span></h1>
+    <p style="font-size:17px;color:var(--muted);line-height:1.7;max-width:480px;margin-bottom:36px">ReachMint uses AI to discover the exact communities where your target users talk about their pain points, generates authentic reply scripts tuned to each community's tone, and tracks every interaction toward your campaign goal.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="https://reachmint.flowmatos.com" target="_blank" class="btn-primary">Open live app →</a>
+      <a href="https://reachmint.flowmatos.com/signup" target="_blank" class="btn-secondary">Start free campaign</a>
+    </div>
+  </div>
+  <div class="terminal">
+    <div class="t-bar">
+      <div class="t-dot" style="background:#FF5F57"></div>
+      <div class="t-dot" style="background:#FEBC2E"></div>
+      <div class="t-dot" style="background:#28C840"></div>
+      <span class="t-title">reachmint — community discovery</span>
+    </div>
+    <div class="t-body">
+      <div class="t-line t-comment"># AI discovery — campaign: "Get first 50 beta signups"</div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line"><span class="t-green">✓</span> <span class="t-white">r/SaaS</span> <span class="t-comment">· Reddit · Startup-friendly</span></div>
+      <div class="t-line t-comment">  query: "struggling to find first users without paid ads"</div>
+      <div class="t-line"><span class="t-green">✓</span> <span class="t-white">Hacker News · Show HN</span> <span class="t-comment">· Technical</span></div>
+      <div class="t-line t-comment">  query: "outreach tool for indie hackers"</div>
+      <div class="t-line"><span class="t-green">✓</span> <span class="t-white">IndieHackers</span> <span class="t-comment">· Forum · Startup-friendly</span></div>
+      <div class="t-line t-comment">  query: "how do you do community outreach?"</div>
+      <div class="t-line"><span class="t-green">✓</span> <span class="t-white">r/startups</span> <span class="t-comment">· Reddit · Professional</span></div>
+      <div class="t-line t-comment">  query: "getting beta users without a big audience"</div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line t-comment"># Script Generator — thread pasted</div>
+      <div class="t-line"><span class="t-green">✓</span> <span class="t-white">Tone detected: Startup-friendly</span></div>
+      <div class="t-line"><span class="t-green">✓</span> <span class="t-white">Pain point extracted: manual tracking</span></div>
+      <div class="t-line"><span class="t-green">✓</span> <span class="t-white">Reply script generated</span> <span class="t-purple">→ insight-first, no hard sell</span></div>
+      <div class="t-line"><span class="t-green">✓</span> <span class="t-white">Logged to tracker</span> <span class="t-comment">· 3 / 50 goal</span></div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line"><span class="t-green">reachmint@campaign</span> <span class="t-white">~$</span> <span class="t-cursor"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 5%">
+  <div class="section-wrap">
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num">8+</div><div class="stat-label">Communities discovered per campaign across Reddit, HN, LinkedIn, IndieHackers, Discord, and more</div></div>
+      <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Platform-specific search queries per community — ready to paste into any forum or search bar</div></div>
+      <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">Goal-tracked outreach — every logged thread counts toward your campaign target</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="section-wrap">
+    <div class="section-label">Three-step workflow</div>
+    <div class="section-title">How ReachMint works</div>
+    <div class="pipeline">
+      <div class="pipe-step">
+        <div class="pipe-circle">01</div>
+        <div class="pipe-content">
+          <h3>Campaign Setup + AI Discovery</h3>
+          <p>You describe your product, target audience, and outreach goal (e.g. "50 beta signups", "10 partnership conversations"). Claude then discovers 8 real, active communities across Reddit, HackerNews, LinkedIn, IndieHackers, Slack groups, Discord servers, and forums — each with a platform-matched tone and 5 ready-to-use search queries. Discovery takes under 30 seconds.</p>
+          <span class="pipe-tag">Claude (Anthropic) · Multi-platform · Tone-aware discovery</span>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-circle">02</div>
+        <div class="pipe-content">
+          <h3>Script Generator</h3>
+          <p>Paste any thread URL or raw text into the Script Generator. Claude identifies the pain point, reads the community tone, and writes a reply script that leads with genuine insight — not a product pitch. Tone is automatically matched to the community: technical for HN, startup-friendly for IndieHackers, professional for LinkedIn. The script always positions your product as a natural next step, never a hard sell.</p>
+          <span class="pipe-tag">Claude · Tone matching · Insight-first scripts · No spam</span>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-circle">03</div>
+        <div class="pipe-content">
+          <h3>Goal Tracker</h3>
+          <p>Every thread you reply to gets logged with the community, platform, status (drafted, posted, converted), and a link. The tracker shows your live progress toward the campaign goal — how many interactions you've made, how many converted, and what's still in flight. Multiple campaigns stay fully isolated: different goals, communities, and trackers per campaign.</p>
+          <span class="pipe-tag">Goal progress · Status tracking · Multi-campaign · Supabase</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY DISCOVERY SAMPLE -->
+<section style="background:var(--surface);border-top:1px solid var(--border)">
+  <div class="section-wrap">
+    <div class="section-label">Sample output</div>
+    <div class="section-title">What a discovery looks like</div>
+    <div class="gap-table-wrap">
+      <table class="gap-table">
+        <thead>
+          <tr>
+            <th>COMMUNITY</th>
+            <th>PLATFORM</th>
+            <th>TONE</th>
+            <th>SAMPLE SEARCH QUERY</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--text);font-weight:500">r/SaaS</td>
+            <td><span class="platform-badge">Reddit</span></td>
+            <td><span class="tone-badge">Startup-friendly</span></td>
+            <td class="query-text">"struggling to get first 100 users without paid ads"</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text);font-weight:500">Hacker News · Ask HN</td>
+            <td><span class="platform-badge">HackerNews</span></td>
+            <td><span class="tone-badge">Technical</span></td>
+            <td class="query-text">"what does your community outreach workflow look like?"</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text);font-weight:500">IndieHackers</td>
+            <td><span class="platform-badge">IndieHackers</span></td>
+            <td><span class="tone-badge">Startup-friendly</span></td>
+            <td class="query-text">"how do you find beta users without a big audience?"</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text);font-weight:500">r/startups</td>
+            <td><span class="platform-badge">Reddit</span></td>
+            <td><span class="tone-badge">Professional</span></td>
+            <td class="query-text">"cold outreach strategies that actually convert in 2026"</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text);font-weight:500">LinkedIn Groups · B2B SaaS Founders</td>
+            <td><span class="platform-badge">LinkedIn</span></td>
+            <td><span class="tone-badge">Professional</span></td>
+            <td class="query-text">"how to reach decision makers without a warm intro"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK START -->
+<section>
+  <div class="section-wrap">
+    <div class="section-label">Quick start</div>
+    <div class="section-title">Running in 3 minutes</div>
+    <div class="install-box">
+      <div class="t-line t-comment"># 1 — Create your campaign</div>
+      <div class="t-line"><span class="t-white">→ Name your campaign, describe your product and target audience</span></div>
+      <div class="t-line"><span class="t-white">→ Set your goal: "50 beta signups" or "10 partnership convos"</span></div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line t-comment"># 2 — Discover communities with AI</div>
+      <div class="t-line"><span class="t-green">AI</span> <span class="t-white">→ Click "Discover with AI" on the Find Threads tab</span></div>
+      <div class="t-line"><span class="t-green">  ✓</span> <span class="t-white">8 communities returned in &lt;30s with platform, tone, queries</span></div>
+      <div class="t-line"><span class="t-green">  ✓</span> <span class="t-white">Click "Add" on the ones that fit your audience</span></div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line t-comment"># 3 — Generate scripts and track</div>
+      <div class="t-line"><span class="t-green">→</span> <span class="t-white">Open a community, find a thread about a real pain point</span></div>
+      <div class="t-line"><span class="t-green">→</span> <span class="t-white">Paste the thread into Script Generator → get a reply in seconds</span></div>
+      <div class="t-line"><span class="t-green">→</span> <span class="t-white">Log it to Tracker → watch your goal counter move</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="section-label" style="text-align:center">Get started</div>
+    <div class="section-title" style="text-align:center">Your audience is out there.<br><span class="grad-text">Go find the conversation.</span></div>
+    <p style="font-size:17px;color:var(--muted);margin-top:12px;line-height:1.65">Set up your first campaign in minutes. AI finds the communities, you show up with something worth saying — no spam, no cold DMs, no guessing.</p>
+    <div class="cta-actions">
+      <a href="https://reachmint.flowmatos.com/signup" target="_blank" class="btn-primary">Start free campaign →</a>
+      <a href="https://reachmint.flowmatos.com" target="_blank" class="btn-secondary">Open live app</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none"><defs><linearGradient id="fg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#00C8F8"/><stop offset="100%" stop-color="#6B21FF"/></linearGradient></defs><path d="M13 38 C13 24 35 24 35 10" stroke="url(#fg)" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="13" cy="38" r="5" fill="#00C8F8"/><circle cx="35" cy="10" r="5" fill="#6B21FF"/></svg>
+      <div class="wordmark"><span class="flow">flow</span><span class="matos">matos</span></div>
+    </a>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="signalmint.html">SignalMint</a>
+      <a href="accountlens.html">AccountLens</a>
+      <a href="mailto:hiren@flowmatos.com">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 flowmatos, Inc. · flowmatos.com</div>
+</footer>
+</body>
+</html>

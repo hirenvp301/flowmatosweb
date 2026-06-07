@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEM Website Personalization by Account (ABM) | AccountLens</title>
+<meta name="description" content="Resolve every inbound visitor to a Salesforce account in under 50ms and personalize content server-side at AEM render time. Zero JS overlay, zero content flicker.">
+<link rel="canonical" href="https://flowmatos.com/accountlens">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="flowmatos">
+<meta property="og:title" content="AEM Website Personalization by Account (ABM) | AccountLens">
+<meta property="og:description" content="Resolve every inbound visitor to a Salesforce account in under 50ms and personalize content server-side at AEM render time. Zero JS overlay, zero content flicker.">
+<meta property="og:url" content="https://flowmatos.com/accountlens">
+<meta property="og:image" content="https://flowmatos.com/og/accountlens.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AEM Website Personalization by Account (ABM) | AccountLens">
+<meta name="twitter:description" content="Resolve every inbound visitor to a Salesforce account in under 50ms and personalize content server-side at AEM render time. Zero JS overlay, zero content flicker.">
+<meta name="twitter:image" content="https://flowmatos.com/og/accountlens.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cyan:#00C8F8;--violet:#6B21FF;--amber:#FF5C35;--bg:#050918;--surface:#0D1428;--border:#1A2A45;--text:#E8EEFF;--muted:#6B7A99;--grad:linear-gradient(135deg,#00C8F8,#6B21FF);--grad-v:linear-gradient(135deg,#6B21FF,#00C8F8)}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(16px);background:rgba(5,9,24,.85);border-bottom:1px solid rgba(26,42,69,.7)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.wordmark{font-family:'Oxanium',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.5px}
+.wordmark .flow{color:var(--cyan)}.wordmark .matos{color:var(--text)}
+.nav-slash{color:var(--border);margin:0 4px;font-size:18px}
+.nav-product{font-family:'JetBrains Mono',monospace;font-size:13px;color:#a578ff}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--grad-v);color:#fff;font-weight:600;font-size:13px;padding:10px 22px;border-radius:8px;border:none;cursor:pointer}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-text-v{background:var(--grad-v);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:#a578ff;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.section-title{font-family:'Oxanium',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:700;letter-spacing:-1.5px;line-height:1.08;margin-bottom:16px}
+.btn-primary{background:var(--grad-v);color:#fff;font-weight:600;font-size:15px;padding:14px 32px;border-radius:10px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary{background:transparent;color:var(--text);font-weight:500;font-size:15px;padding:14px 32px;border-radius:10px;border:1px solid var(--border);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+section{padding:80px 5%}
+.section-wrap{max-width:1280px;margin:0 auto}
+
+/* HERO */
+.hero{padding:140px 5% 80px;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(107,33,255,.1);border:1px solid rgba(107,33,255,.25);border-radius:999px;padding:6px 16px;font-size:12px;font-family:'JetBrains Mono',monospace;color:#a578ff;margin-bottom:24px;letter-spacing:.5px}
+
+/* ARCH */
+.arch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:60px}
+.agent-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;position:relative;overflow:hidden}
+.agent-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-v)}
+.agent-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:#a578ff;letter-spacing:1px;margin-bottom:8px}
+.agent-name{font-family:'Oxanium',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px}
+.agent-desc{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:14px}
+.agent-spec{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);background:rgba(26,42,69,.6);padding:6px 12px;border-radius:6px;display:inline-block}
+
+/* PERSONALIZED */
+.personalized-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:60px}
+.pers-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
+.pers-icon{font-size:20px;margin-bottom:10px}
+.pers-name{font-family:'Oxanium',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px}
+.pers-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* VS */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:60px}
+.vs-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px}
+.vs-card.ours{border-color:rgba(107,33,255,.3)}
+.vs-title{font-family:'Oxanium',sans-serif;font-size:16px;font-weight:700;margin-bottom:16px}
+.vs-title.ours{color:#a578ff}
+.vs-item{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);padding:8px 0;border-bottom:1px solid rgba(26,42,69,.5)}
+.vs-item:last-child{border-bottom:none}
+.check{color:var(--cyan);font-size:16px}
+.cross{color:var(--amber);font-size:16px}
+
+/* METRICS */
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:60px}
+.metric-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center}
+.metric-num{font-family:'Oxanium',sans-serif;font-size:36px;font-weight:800;letter-spacing:-1px;background:var(--grad-v);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.metric-label{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+
+/* CTA */
+.cta-band{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 5%;text-align:center}
+.cta-inner{max-width:600px;margin:0 auto}
+.cta-form{display:flex;gap:12px;max-width:440px;margin:28px auto 0;flex-wrap:wrap;justify-content:center}
+.cta-input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none}
+.cta-input:focus{border-color:rgba(107,33,255,.4)}
+.cta-input::placeholder{color:var(--muted)}
+
+footer{background:var(--surface);border-top:1px solid var(--border);padding:48px 5%}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-links{display:flex;gap:28px}
+.footer-links a{font-size:13px;color:var(--muted)}
+.footer-copy{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin:24px auto 0;text-align:center;opacity:.6;max-width:1280px}
+@media(max-width:900px){.hero,.arch-grid,.personalized-grid,.vs-grid,.metrics-row{grid-template-columns:1fr;gap:24px}.nav-links{display:none}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "AccountLens",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "B2B Website Personalization",
+      "operatingSystem": "Web",
+      "url": "https://flowmatos.com/accountlens",
+      "description": "Resolves every inbound visitor to a Salesforce account in under 50ms and injects account-aware content at AEM render time with zero JS overlay and zero content flicker.",
+      "publisher": { "@id": "https://flowmatos.com/#org" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://flowmatos.com/" },
+        { "@type": "ListItem", "position": 2, "name": "AccountLens", "item": "https://flowmatos.com/accountlens" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><defs><linearGradient id="g1" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#00C8F8"/><stop offset="100%" stop-color="#6B21FF"/></linearGradient></defs><path d="M13 38 C13 24 35 24 35 10" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="13" cy="38" r="5" fill="#00C8F8"/><circle cx="35" cy="10" r="5" fill="#6B21FF"/></svg>
+    <div class="wordmark"><span class="flow">flow</span><span class="matos">matos</span></div>
+    <span class="nav-slash">/</span>
+    <span class="nav-product">AccountLens</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#workflows">Workflows</a>
+    <a href="index.html#products">Products</a>
+    
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="#design-partner" class="nav-cta">Become a design partner</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-badge">◆ Design partner stage · Workflow 01</div>
+    <h1 class="section-title">Your website is the only channel <span class="grad-text-v">blind to account intelligence</span></h1>
+    <p style="font-size:17px;color:var(--muted);line-height:1.7;max-width:480px;margin-bottom:36px">Every other channel — field events, outbound, paid, sales briefings — responds to deal stage and ICP tier. AccountLens closes that gap natively inside AEM. Zero JS overlay. Zero content flicker. Measured in pipeline velocity.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="#design-partner" class="btn-primary">Become a design partner</a>
+      <a href="https://accountlens.flowmatos.com/demo" target="_blank" class="btn-secondary">Live demo →</a>
+    </div>
+  </div>
+  <div style="background:var(--surface);border:1px solid rgba(107,33,255,.3);border-radius:16px;padding:32px;font-family:'JetBrains Mono',monospace;font-size:12px">
+    <div style="font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:16px">ACCOUNTLENS — REAL-TIME RESOLVE</div>
+    <div style="padding:3px 0;line-height:1.7;color:#3a5066"># Inbound visitor: 34.234.12.45</div>
+    <div style="padding:3px 0;line-height:1.7"><span style="color:var(--cyan)">✓</span> <span style="color:var(--text)">IP enriched</span> <span style="color:#FAC775">→ Salesforce Inc. (SFDC)</span></div>
+    <div style="padding:3px 0;line-height:1.7"><span style="color:var(--cyan)">✓</span> <span style="color:var(--text)">ICP tier:</span> <span style="color:#a578ff">Tier 1 · $380K opp open · late-stage eval</span></div>
+    <div style="padding:3px 0;line-height:1.7"><span style="color:var(--cyan)">✓</span> <span style="color:var(--text)">AE owner: J.Smith · Last touch: 3d ago</span></div>
+    <div style="padding:3px 0;line-height:1.7"><span style="color:var(--cyan)">✓</span> <span style="color:var(--text)">Segment: enterprise-security-late</span></div>
+    <div style="padding:3px 0;line-height:1.7;color:#3a5066"># Content decision</div>
+    <div style="padding:3px 0;line-height:1.7"><span style="color:var(--cyan)">✓</span> <span style="color:var(--text)">Hero: "Protecting 500M+ AWS accounts"</span></div>
+    <div style="padding:3px 0;line-height:1.7"><span style="color:var(--cyan)">✓</span> <span style="color:var(--text)">CTA: "Book security architecture review"</span></div>
+    <div style="padding:3px 0;line-height:1.7"><span style="color:var(--cyan)">✓</span> <span style="color:var(--text)">AEM injected</span> <span style="color:var(--cyan)">· 0 flicker · </span><span style="color:#a578ff">38ms p95</span></div>
+    <div style="padding:3px 0;line-height:1.7"><span style="color:var(--cyan)">✓</span> <span style="color:var(--text)">AE pre-call brief sent to Slack</span></div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 5%">
+  <div class="section-wrap">
+    <div class="metrics-row">
+      <div class="metric-card"><div class="metric-num">&lt;50ms</div><div class="metric-label">p95 visitor-to-account resolution latency</div></div>
+      <div class="metric-card"><div class="metric-num">4</div><div class="metric-label">Agents: Resolve → Enrich → Decide → Deliver</div></div>
+      <div class="metric-card"><div class="metric-num">20%</div><div class="metric-label">Holdout control group maintained throughout</div></div>
+      <div class="metric-card"><div class="metric-num">6</div><div class="metric-label">Content zones personalized per page render</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VS -->
+<section>
+  <div class="section-wrap">
+    <div class="section-label">Why AccountLens</div>
+    <div class="section-title">AccountLens vs Demandbase / Mutiny</div>
+    <div class="vs-grid">
+      <div class="vs-card">
+        <div class="vs-title">Demandbase · Mutiny</div>
+        <div class="vs-item"><span class="cross">✗</span> JavaScript snippet injected after page load</div>
+        <div class="vs-item"><span class="cross">✗</span> Visible content flicker on load</div>
+        <div class="vs-item"><span class="cross">✗</span> Works outside CMS content model</div>
+        <div class="vs-item"><span class="cross">✗</span> Ad-blocker and privacy extension risk</div>
+        <div class="vs-item"><span class="cross">✗</span> No CRM deal stage context at render</div>
+        <div class="vs-item"><span class="cross">✗</span> Measured in engagement, not pipeline</div>
+      </div>
+      <div class="vs-card ours">
+        <div class="vs-title ours">AccountLens</div>
+        <div class="vs-item"><span class="check">✓</span> Server-side AEM Sling Model integration</div>
+        <div class="vs-item"><span class="check">✓</span> Zero content flicker — correct HTML on arrival</div>
+        <div class="vs-item"><span class="check">✓</span> Native inside AEM content model</div>
+        <div class="vs-item"><span class="check">✓</span> No client-side JS — no ad-blocker risk</div>
+        <div class="vs-item"><span class="check">✓</span> Full Salesforce deal stage context at render</div>
+        <div class="vs-item"><span class="check">✓</span> Measured in pipeline velocity and win rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section style="background:var(--surface);border-top:1px solid var(--border)">
+  <div class="section-wrap">
+    <div class="section-label">Four-agent architecture</div>
+    <div class="section-title">How AccountLens works</div>
+    <div class="arch-grid">
+      <div class="agent-card">
+        <div class="agent-num">AGENT 01</div>
+        <div class="agent-name">Account Resolution</div>
+        <div class="agent-desc">IP enrichment → Salesforce domain match → returns ICP tier, deal stage, open opportunity value, AE owner. Three-layer cache: in-memory → Redis → DynamoDB. p95 latency target: &lt;50ms.</div>
+        <div class="agent-spec">Redis · DynamoDB · Salesforce API</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-num">AGENT 02</div>
+        <div class="agent-name">Audience &amp; Intent</div>
+        <div class="agent-desc">Enriches account context with Adobe AEP behavioral signals, segment membership, prior content consumption, and persona classification. Builds the full decision context object.</div>
+        <div class="agent-spec">Adobe AEP · Segment API · Behavioral signals</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-num">AGENT 03</div>
+        <div class="agent-name">Content Decision (LLM)</div>
+        <div class="agent-desc">Queries AEM content index, scores variants against context using weighted formula (industry 35%, funnel stage 30%, ICP tier 20%, persona 15%). Below threshold: Claude on Amazon Bedrock generates compliant copy.</div>
+        <div class="agent-spec">Claude · Amazon Bedrock · AEM Content Index</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-num">AGENT 04</div>
+        <div class="agent-name">Delivery &amp; Test</div>
+        <div class="agent-desc">Injects content payload at AEM Sling Model render hook. Maintains 20% holdout group. Coordinates with Adobe Target for existing A/B activities. Triggers async AE pre-call brief pipeline.</div>
+        <div class="agent-spec">AEM Sling Models · Adobe Target · Slack</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT GETS PERSONALIZED -->
+<section>
+  <div class="section-wrap">
+    <div class="section-label">Personalization zones</div>
+    <div class="section-title">What gets personalized</div>
+    <div class="personalized-grid">
+      <div class="pers-item"><div class="pers-name">Hero headline</div><div class="pers-desc">Industry pain-led, ICP tier modified. Different message for Tier 1 late-stage vs Tier 3 awareness.</div></div>
+      <div class="pers-item"><div class="pers-name">Primary CTA</div><div class="pers-desc">Text and destination matched to deal stage. "Book a security review" vs "Start free trial".</div></div>
+      <div class="pers-item"><div class="pers-name">Customer logo wall</div><div class="pers-desc">Industry-matched from full logo set. FinTech visitor sees FinTech customers.</div></div>
+      <div class="pers-item"><div class="pers-name">Featured case study</div><div class="pers-desc">Industry, company size, and use case matched. Enterprise security prospect sees the right story.</div></div>
+      <div class="pers-item"><div class="pers-name">Resource recommendations</div><div class="pers-desc">Funnel stage and topic cluster matched. Late-stage gets ROI calculators, not intro guides.</div></div>
+      <div class="pers-item"><div class="pers-name">Product messaging</div><div class="pers-desc">Feature emphasis matched to evaluation criteria. CISO sees compliance, VP Eng sees integration.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band" id="design-partner">
+  <div class="cta-inner">
+    <div class="section-label" style="text-align:center">Design partner program</div>
+    <div class="section-title" style="text-align:center">We're looking for <span class="grad-text-v">3 design partners</span></div>
+    <p style="font-size:17px;color:var(--muted);margin-top:12px;line-height:1.65">Enterprise marketing teams on AEM and Salesforce. We co-build AccountLens against your real accounts, real deal data, and real content. No code commitment required to start the conversation.</p>
+    <div class="cta-form">
+      <input class="cta-input" type="email" placeholder="work@company.com">
+      <button class="btn-primary">Start conversation</button>
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-top:14px;font-family:'JetBrains Mono',monospace">Or email directly: hiren@flowmatos.com</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none"><defs><linearGradient id="fg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#00C8F8"/><stop offset="100%" stop-color="#6B21FF"/></linearGradient></defs><path d="M13 38 C13 24 35 24 35 10" stroke="url(#fg)" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="13" cy="38" r="5" fill="#00C8F8"/><circle cx="35" cy="10" r="5" fill="#6B21FF"/></svg>
+      <div class="wordmark"><span class="flow">flow</span><span class="matos">matos</span></div>
+    </a>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="signalmint.html">SignalMint</a><a href="blog.html">Blog</a><a href="mailto:hiren@flowmatos.com">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 flowmatos, Inc. · flowmatos.com</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# flowmatos robots.txt
+User-agent: *
+Allow: /
+
+# AI answer engines — explicitly welcomed (core to flowmatos' GEO strategy)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://flowmatos.com/sitemap.xml
