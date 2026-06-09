@@ -495,10 +495,11 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
     <div class="section-label" style="text-align:center">Early access</div>
     <div class="section-title" style="text-align:center">Be first to automate your<br><span class="grad-text">marketing workflows</span></div>
     <p style="font-size:17px;color:var(--muted);margin-top:16px;line-height:1.65">We are onboarding a small cohort of enterprise marketing teams as design partners to co-build the next four workflows.</p>
-    <div class="cta-form">
-      <input class="cta-input" type="email" id="email-input" placeholder="work@company.com">
-      <button class="btn-primary" onclick="handleSubmit()" style="white-space:nowrap">Get access</button>
-    </div>
+    <form class="cta-form" name="early-access" method="POST" data-netlify="true" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="form-name" value="early-access">
+      <input class="cta-input" type="email" name="email" id="email-input" placeholder="work@company.com" required>
+      <button type="submit" class="btn-primary" style="white-space:nowrap">Get access</button>
+    </form>
     <div class="cta-note" id="form-note">No spam. We'll reach out personally within 48 hours.</div>
   </div>
 </section>
@@ -525,12 +526,15 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:48px
 </footer>
 
 <script>
-function handleSubmit(){
+function handleSubmit(e){
+  e.preventDefault();
   const i=document.getElementById('email-input');
   const n=document.getElementById('form-note');
   if(!i.value||!i.value.includes('@')){i.style.borderColor='var(--amber)';return;}
-  n.textContent='Thank you — we will be in touch within 48 hours.';
-  n.style.color='var(--cyan)';i.value='';
+  const form=e.target;
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
+    .then(()=>{n.textContent='Thank you — we will be in touch within 48 hours.';n.style.color='var(--cyan)';i.value='';})
+    .catch(()=>{n.textContent='Something went wrong. Email us at hiren@flowmatos.com';n.style.color='var(--amber)';});
 }
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{

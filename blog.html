@@ -245,10 +245,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 5%}
     <div class="section-label" style="text-align:center">Stay current</div>
     <h2>Get the next post<br>in your inbox</h2>
     <p>One article per week on enterprise marketing workflow automation. No roundups. No fluff.</p>
-    <div class="nl-form">
-      <input class="nl-input" type="email" placeholder="work@company.com">
-      <button class="nl-btn">Subscribe</button>
-    </div>
+    <form class="nl-form" name="newsletter" method="POST" data-netlify="true" onsubmit="handleNewsletter(event)">
+      <input type="hidden" name="form-name" value="newsletter">
+      <input class="nl-input" type="email" name="email" placeholder="work@company.com" required>
+      <button type="submit" class="nl-btn" id="nl-btn">Subscribe</button>
+    </form>
   </div>
 </div>
 
@@ -280,6 +281,16 @@ document.querySelectorAll('.filter-pill').forEach(pill=>{
     });
   });
 });
+function handleNewsletter(e){
+  e.preventDefault();
+  const form=e.target;
+  const btn=document.getElementById('nl-btn');
+  const emailInput=form.querySelector('input[type="email"]');
+  if(!emailInput.value||!emailInput.value.includes('@')){emailInput.style.borderColor='var(--amber)';return;}
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
+    .then(()=>{btn.textContent='Subscribed ✓';btn.style.background='rgba(0,200,248,0.15)';btn.style.color='var(--cyan)';emailInput.value='';})
+    .catch(()=>{btn.textContent='Error — try again';});
+}
 </script>
 </body>
 </html>
