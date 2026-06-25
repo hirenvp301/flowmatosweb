@@ -1,0 +1,53 @@
+# flowmatos
+
+> flowmatos builds AI agent pipelines that automate high-friction enterprise marketing workflows — AI search visibility (GEO), account-based website personalization, campaign brief generation, and community outreach — as an orchestration layer on top of your existing MarTech stack. No rip-and-replace. Founded by Hiren Patel, a senior AI PM and MarTech specialist with 15+ years at AWS, IBM, and Amazon.
+
+flowmatos is a suite of four standalone products, each a focused agent pipeline rather than a monolithic platform. The core thesis: enterprise marketing teams are locked into stacks they have outgrown, while 73% of enterprise marketing sites lost traffic to AI search in 2025 and 96% of B2B visitors still see generic pages. flowmatos agents close those gaps by acting on the data where it already lives — resolving visitor-to-account identity server-side in under 50ms and measuring success by pipeline velocity, not engagement vanity metrics.
+
+## Products
+
+- [SignalMint](https://flowmatos.com/signalmint): Generative Engine Optimization (GEO) tool. Finds the buyer queries where ChatGPT, Claude, and Gemini cite competitors instead of you, scores them by urgency, and generates CMS-ready content briefs to close each AI search gap. Live and free to try.
+- [AccountLens](https://flowmatos.com/accountlens): AEM website personalization by account (ABM). Resolves every inbound visitor to a Salesforce account in under 50ms and personalizes content server-side at render time — zero JS overlay, zero content flicker. Taking design partners.
+- [CampaignMint](https://flowmatos.com/campaignmint): Free AI campaign brief generator. Turns a campaign goal into a full brief in under 2 minutes — ICP, personas, messaging hierarchy, channel plan with budget weights, and KPIs. No account required.
+- [ReachMint](https://flowmatos.com/reachmint): AI community outreach tool for founders and SaaS teams. Finds the communities where your audience discusses their pain points, writes authentic insight-first reply scripts, and tracks every interaction toward your goal.
+
+## Company
+
+- [About flowmatos and Hiren Patel](https://flowmatos.com/about): Founder background — senior AI PM and MarTech specialist, 15+ years at AWS, IBM, and Amazon.
+- [Home](https://flowmatos.com/): Overview of the flowmatos approach to AI marketing workflow automation.
+
+## Blog — AI Search & GEO
+
+- [What Is AEO (Answer Engine Optimisation)? The Complete Guide](https://flowmatos.com/blog-what-is-aeo): Everything enterprise marketers need to know about optimizing content to be cited by AI answer engines.
+- [llms.txt and How to Get Your Brand Cited by AI Engines](https://flowmatos.com/blog-llms-txt-ai-citations): The llms.txt standard, structured answers, and the markup that wins citations from ChatGPT, Perplexity, Claude, and Google AI Mode.
+- [How to Measure Your Brand's Share of Voice Across AI Engines](https://flowmatos.com/blog-geo-share-of-voice): GEO analytics — citation rate, share of voice, answer sentiment, and position-in-answer across multiple AI engines.
+- [SignalMint: How to Find and Fix AI Citation Gaps for B2B Brands](https://flowmatos.com/blog-signalmint): How SignalMint surfaces the queries where AI search ignores your brand and generates content to fix it.
+- [AI Brand Visibility in 2026: How Enterprise Teams Are Losing Ground](https://flowmatos.com/blog-ai-brand-visibility): Why 73% of enterprise marketing websites lost traffic to AI search in 2025 and what to do about it.
+
+## Blog — AI Agents & Strategy
+
+- [AI Agents Are Your New Buyers: Agentic Commerce Comes to B2B](https://flowmatos.com/blog-ai-agents-are-your-buyers): How B2B buyers now send AI agents to research and shortlist vendors before a human ever visits — and how to win when the first visitor is a machine.
+- [AI Agents for Enterprise Marketing Automation: The Orchestration Layer Approach](https://flowmatos.com/blog-ai-agents-enterprise-marketing): Orchestrate personalization, campaign briefs, and GEO gap detection without rip-and-replace.
+- [The 10 Enterprise Marketing Workflows You're Still Running by Hand](https://flowmatos.com/blog-ten-workflows): Every repeatable enterprise marketing workflow mapped, explained, and automated — with the agent architecture for each.
+- [MarTech Consolidation: From 25 Tools to 10 Agents](https://flowmatos.com/blog-martech-consolidation): How AI agent orchestration is replacing point solutions, and how to make the transition without losing capability.
+- [How to Build an Enterprise MarTech Stack in 2026](https://flowmatos.com/blog-enterprise-martech-stack): What the right stack looks like — and what to cut.
+
+## Blog — Personalization & Identity
+
+- [Cookieless Identity Resolution for B2B Website Personalization](https://flowmatos.com/blog-cookieless-identity-resolution): How to resolve visitors to accounts server-side, in under 50ms, without third-party cookies or a JS overlay.
+- [AccountLens: B2B Website Personalization Without the JS Overlay](https://flowmatos.com/blog-accountlens): Native account-based personalization inside AEM, without a client-side overlay.
+- [ABM Website Personalization: The Complete Guide for Enterprise B2B](https://flowmatos.com/blog-abm-website-personalization): What account-based website personalization is, how it works technically, and how to measure it in pipeline.
+
+## Blog — Campaign & Outreach Automation
+
+- [How to Automate Campaign Brief Generation with AI Agents](https://flowmatos.com/blog-automate-campaign-brief-generation): The three-stage pipeline — identity resolution, signal enrichment, brief composition.
+- [Campaign Brief Automation: From 3 Days to 60 Seconds](https://flowmatos.com/blog-campaign-brief-automation): How CampaignMint closes the gap on a process that costs enterprise teams thousands of hours per year.
+- [The AI SDR: Autonomous Community Outreach at Scale](https://flowmatos.com/blog-ai-sdr-autonomous-outreach): How autonomous agents find the right communities, generate context-aware replies, and track pipeline.
+- [Community Outreach Automation for B2B Marketing: The Multi-Agent Approach](https://flowmatos.com/blog-community-outreach-automation): Orchestrate prospect discovery, personalization, and brief generation without disrupting your MarTech stack.
+- [Dark Funnel Attribution: Measuring Pipeline from AI Search](https://flowmatos.com/blog-dark-funnel-attribution): How to connect AI search, dark social, and direct traffic to Salesforce opportunity data.
+
+## Optional
+
+- [Blog index](https://flowmatos.com/blog): All flowmatos articles on GEO, AI search visibility, personalization, and marketing workflow automation.
+- [Sitemap](https://flowmatos.com/sitemap.xml): Full XML sitemap of flowmatos.com.
+- [Contact](mailto:hiren@flowmatos.com): Reach the founder directly.
