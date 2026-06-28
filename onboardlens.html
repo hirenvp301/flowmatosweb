@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N1VFZCN4S3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N1VFZCN4S3');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onboarding & Website Friction Testing with AI | OnboardLens</title>
+<meta name="description" content="OnboardLens sends Claude through your real product onboarding or public website as your ICP persona in a live browser, scores the friction, and hands you a shareable, prioritized action plan.">
+<link rel="canonical" href="https://flowmatos.com/onboardlens">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="flowmatos">
+<meta property="og:title" content="Onboarding & Website Friction Testing with AI | OnboardLens">
+<meta property="og:description" content="Claude walks your real onboarding or website as your ICP persona, scores the friction, and hands you a shareable, prioritized action plan.">
+<meta property="og:url" content="https://flowmatos.com/onboardlens">
+<meta property="og:image" content="https://flowmatos.com/og/onboardlens.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Onboarding & Website Friction Testing with AI | OnboardLens">
+<meta name="twitter:description" content="Claude walks your real onboarding or website as your ICP persona, scores the friction, and hands you a shareable, prioritized action plan.">
+<meta name="twitter:image" content="https://flowmatos.com/og/onboardlens.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cyan:#00C8F8;--violet:#6B21FF;--amber:#FF5C35;--bg:#050918;--surface:#0D1428;--border:#1A2A45;--text:#E8EEFF;--muted:#6B7A99;--grad:linear-gradient(135deg,#00C8F8,#6B21FF)}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(16px);background:rgba(5,9,24,.85);border-bottom:1px solid rgba(26,42,69,.7)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.wordmark{font-family:'Oxanium',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.5px}
+.wordmark .flow{color:var(--cyan)}.wordmark .matos{color:var(--text)}
+.nav-slash{color:var(--border);margin:0 4px;font-size:18px}
+.nav-product{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cyan)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--grad);color:#fff;font-weight:600;font-size:13px;padding:10px 22px;border-radius:8px;border:none;cursor:pointer}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.section-title{font-family:'Oxanium',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:700;letter-spacing:-1.5px;line-height:1.08;margin-bottom:16px}
+.btn-primary{background:var(--grad);color:#fff;font-weight:600;font-size:15px;padding:14px 32px;border-radius:10px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-secondary{background:transparent;color:var(--text);font-weight:500;font-size:15px;padding:14px 32px;border-radius:10px;border:1px solid var(--border);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+
+/* HERO */
+.hero{padding:140px 5% 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1280px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,248,.08);border:1px solid rgba(0,200,248,.2);border-radius:999px;padding:6px 16px;font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--cyan);margin-bottom:24px;letter-spacing:.5px}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite;display:inline-block}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.terminal{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:12px}
+.t-bar{background:rgba(26,42,69,.8);padding:12px 16px;display:flex;align-items:center;gap:8px}
+.t-dot{width:12px;height:12px;border-radius:50%}
+.t-title{color:var(--muted);font-size:11px;margin-left:4px}
+.t-body{padding:20px 24px}
+.t-line{padding:2px 0;line-height:1.7}
+.t-comment{color:#3a5066}.t-green{color:var(--cyan)}.t-amber{color:#FAC775}.t-white{color:var(--text)}.t-purple{color:#a578ff}.t-red{color:var(--amber)}
+.t-cursor{display:inline-block;width:7px;height:13px;background:var(--cyan);animation:blink 1.1s step-end infinite;vertical-align:text-bottom}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* SECTIONS */
+section{padding:80px 5%}
+.section-wrap{max-width:1280px;margin:0 auto}
+
+/* PIPELINE */
+.pipeline{display:flex;flex-direction:column;gap:0;margin-top:60px}
+.pipe-step{display:grid;grid-template-columns:64px 1fr;gap:0;position:relative}
+.pipe-step:not(:last-child)::after{content:'';position:absolute;left:31px;top:64px;bottom:0;width:1px;background:var(--border)}
+.pipe-circle{width:64px;height:64px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);position:relative;z-index:1;flex-shrink:0;font-weight:500;letter-spacing:.5px}
+.pipe-content{padding:12px 0 48px 28px}
+.pipe-content h3{font-family:'Oxanium',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px}
+.pipe-content p{font-size:15px;color:var(--muted);line-height:1.7;max-width:580px;margin-bottom:12px}
+.pipe-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(0,200,248,.08);border:1px solid rgba(0,200,248,.15);color:var(--cyan);font-size:11px;font-family:'JetBrains Mono',monospace;padding:4px 12px;border-radius:999px}
+
+/* GAP TABLE */
+.gap-table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:40px}
+.gap-table{width:100%;border-collapse:collapse}
+.gap-table th{background:rgba(26,42,69,.6);padding:14px 20px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;text-align:left;border-bottom:1px solid var(--border)}
+.gap-table td{padding:14px 20px;font-size:13px;border-bottom:1px solid rgba(26,42,69,.5)}
+.gap-table tr:last-child td{border-bottom:none}
+.score-bar{display:flex;align-items:center;gap:8px}
+.score-pill{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px}
+.score-high{background:rgba(255,92,53,.15);color:var(--amber)}
+.score-mid{background:rgba(0,200,248,.1);color:var(--cyan)}
+.score-low{background:rgba(107,122,153,.1);color:var(--muted)}
+.engine-badges{display:flex;gap:4px;flex-wrap:wrap}
+.eng-badge{font-size:10px;font-family:'JetBrains Mono',monospace;padding:2px 7px;border-radius:4px;background:rgba(107,33,255,.1);color:#a578ff;border:1px solid rgba(107,33,255,.2)}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center}
+.stat-num{font-family:'Oxanium',sans-serif;font-size:40px;font-weight:800;letter-spacing:-1px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5}
+
+/* INSTALL */
+.install-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;margin-top:40px;font-family:'JetBrains Mono',monospace;font-size:13px}
+.install-box .t-line{padding:4px 0}
+
+/* CTA */
+.cta-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center;padding:80px 5%}
+.cta-inner{max-width:600px;margin:0 auto}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+
+footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 5%}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-links{display:flex;gap:28px}
+.footer-links a{font-size:13px;color:var(--muted)}
+.footer-copy{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin:24px auto 0;text-align:center;opacity:.6;max-width:1280px}
+@media(max-width:900px){.hero,.stats-row{grid-template-columns:1fr;gap:40px}.nav-links{display:none}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "OnboardLens",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Onboarding & Conversion Optimization",
+      "operatingSystem": "Web",
+      "url": "https://flowmatos.com/onboardlens",
+      "description": "OnboardLens has Claude walk your real product onboarding or public website as your ICP persona in a live browser, scores the friction, and generates a shareable, prioritized action plan.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://flowmatos.com/#org" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://flowmatos.com/" },
+        { "@type": "ListItem", "position": 2, "name": "OnboardLens", "item": "https://flowmatos.com/onboardlens" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I test my SaaS onboarding for friction?",
+          "acceptedAnswer": { "@type": "Answer", "text": "OnboardLens opens a real browser and has Claude go through your product onboarding as your ICP persona — clicking, typing, and narrating friction in first person. It scores each point of friction and produces a prioritized action plan you can share as a link or PDF." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can AI evaluate my marketing website for conversion friction?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. OnboardLens's Website Walkthrough sends Claude through your public site as a prospective visitor and scores conversion friction across messaging clarity, navigation and findability, conversion path, and trust — then recommends concrete fixes." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><defs><linearGradient id="g1" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#00C8F8"/><stop offset="100%" stop-color="#6B21FF"/></linearGradient></defs><path d="M13 38 C13 24 35 24 35 10" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="13" cy="38" r="5" fill="#00C8F8"/><circle cx="35" cy="10" r="5" fill="#6B21FF"/></svg>
+    <div class="wordmark"><span class="flow">flow</span><span class="matos">matos</span></div>
+    <span class="nav-slash">/</span>
+    <span class="nav-product">OnboardLens</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#workflows">Workflows</a>
+    <a href="index.html#products">Products</a>
+
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="https://onboardlens.flowmatos.com" target="_blank" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<div class="hero">
+  <div>
+    <div class="hero-badge"><span class="badge-dot"></span>Live · Try Free · Workflow 11</div>
+    <h1 class="section-title">Find onboarding friction <span class="grad-text">before users do</span></h1>
+    <p style="font-size:17px;color:var(--muted);line-height:1.7;max-width:480px;margin-bottom:36px">OnboardLens sends Claude through your real product onboarding — or your public website — as your ICP persona in a live browser. It narrates every point of friction, scores it, and hands you a shareable, prioritized action plan.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="https://onboardlens.flowmatos.com" target="_blank" class="btn-primary">Open live app →</a>
+
+    </div>
+  </div>
+  <div class="terminal">
+    <div class="t-bar">
+      <div class="t-dot" style="background:#FF5F57"></div>
+      <div class="t-dot" style="background:#FEBC2E"></div>
+      <div class="t-dot" style="background:#28C840"></div>
+      <span class="t-title">onboardlens — live walkthrough</span>
+    </div>
+    <div class="t-body">
+      <div class="t-line t-comment"># Persona: "Sarah, VP Finance" · goal: activate</div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line"><span class="t-green">→</span> <span class="t-white">opened app.yourproduct.com</span></div>
+      <div class="t-line"><span class="t-amber">think</span> <span class="t-white">"The setup screen lists 6 integrations</span></div>
+      <div class="t-line t-comment">  with no 'skip for now' — I'm stuck."</div>
+      <div class="t-line"><span class="t-green">click</span> <span class="t-white">Connect data source</span></div>
+      <div class="t-line"><span class="t-red">friction</span> <span class="t-white">8/10 · drop-off risk: high</span></div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line t-comment"># Action Plan — ranked by impact</div>
+      <div class="t-line"><span class="t-red">HIGH</span> <span class="t-white">Add "Skip for now" on the setup step</span></div>
+      <div class="t-line"><span class="t-amber">MED</span> <span class="t-white">Explain why integrations matter inline</span></div>
+      <div class="t-line"><span class="t-green">✓</span> <span class="t-white">Report ready</span> <span class="t-purple">→ shareable link + PDF</span></div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line"><span class="t-green">onboardlens@run</span> <span class="t-white">~$</span> <span class="t-cursor"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 5%">
+  <div class="section-wrap">
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Analysis types across the funnel: Plan · Acquire · Activate</div></div>
+      <div class="stat-card"><div class="stat-num">Live</div><div class="stat-label">Claude drives a real browser through your product or site</div></div>
+      <div class="stat-card"><div class="stat-num">PDF</div><div class="stat-label">Every run ends in a shareable report + downloadable action plan</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="section-wrap">
+    <div class="section-label">One tool, three lenses</div>
+    <div class="section-title">Catch friction at every stage</div>
+    <div class="pipeline">
+      <div class="pipe-step">
+        <div class="pipe-circle">PLAN</div>
+        <div class="pipe-content">
+          <h3>AI Simulation</h3>
+          <p>Describe your onboarding steps and personas. Claude reviews them and scores friction at each step — no live product needed. Perfect while you're still designing the flow and want a fast expert read on your plan.</p>
+          <span class="pipe-tag">Steps + personas · clarity & friction scores · per-step fixes</span>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-circle">ACQ</div>
+        <div class="pipe-content">
+          <h3>Website Walkthrough</h3>
+          <p>Claude visits your public site as a prospective visitor and scores conversion friction across messaging clarity, navigation and findability, conversion path, and trust. Free-browse toward a goal, or follow a defined page list.</p>
+          <span class="pipe-tag">Real browser · 4 focus scores · no login required</span>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-circle">ACT</div>
+        <div class="pipe-content">
+          <h3>Live Walkthrough</h3>
+          <p>Claude opens a real browser, logs into your product, and onboards as your ICP persona — narrating real friction with live screenshots. Handles password, magic-link, and human-handoff login for SSO or MFA.</p>
+          <span class="pipe-tag">Live browser · narrated screenshots · friction scoring</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAP REPORT EXAMPLE -->
+<section style="background:var(--surface);border-top:1px solid var(--border)">
+  <div class="section-wrap">
+    <div class="section-label">Output</div>
+    <div class="section-title">What you get from every run</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:60px" class="stats-row">
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px">
+        <div style="font-family:'Oxanium',sans-serif;font-size:18px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px">A live, narrated walkthrough</div>
+        <p style="font-size:14px;color:var(--muted);line-height:1.65">Watch Claude move through your product or site in real time — every click and hesitation, narrated in first person as your persona, with screenshots of exactly what it saw.</p>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px">
+        <div style="font-family:'Oxanium',sans-serif;font-size:18px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px">Friction &amp; focus scores</div>
+        <p style="font-size:14px;color:var(--muted);line-height:1.65">An overall friction score plus, for websites, a breakdown across messaging clarity, navigation, conversion, and trust — so you know which lever to pull first.</p>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px">
+        <div style="font-family:'Oxanium',sans-serif;font-size:18px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px">A prioritized action plan</div>
+        <p style="font-size:14px;color:var(--muted);line-height:1.65">Claude distills the run into ranked, severity-tagged recommendations — each with the specific fix and the moment that revealed it. Built to hand straight to a PM or designer.</p>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px">
+        <div style="font-family:'Oxanium',sans-serif;font-size:18px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px">A shareable report + PDF</div>
+        <p style="font-size:14px;color:var(--muted);line-height:1.65">One click turns any run into a read-only report link anyone can open — no login — or a branded PDF to drop in a ticket, deck, or exec email.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK INSTALL -->
+<section>
+</section>
+
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="section-label" style="text-align:center">Try it free</div>
+    <div class="section-title" style="text-align:center">Watch Claude onboard<br><span class="grad-text">to your product</span></div>
+    <p style="font-size:17px;color:var(--muted);margin-top:12px;line-height:1.65">Point OnboardLens at your product or website, pick a persona, and get a prioritized action plan in minutes — then share it with one link.</p>
+    <div class="cta-actions">
+      <a href="https://onboardlens.flowmatos.com" target="_blank" class="btn-primary">Open the live app →</a>
+
+    </div>
+  </div>
+</div>
+
+</main>
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none"><defs><linearGradient id="fg" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#00C8F8"/><stop offset="100%" stop-color="#6B21FF"/></linearGradient></defs><path d="M13 38 C13 24 35 24 35 10" stroke="url(#fg)" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="13" cy="38" r="5" fill="#00C8F8"/><circle cx="35" cy="10" r="5" fill="#6B21FF"/></svg>
+      <div class="wordmark"><span class="flow">flow</span><span class="matos">matos</span></div>
+    </a>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="accountlens.html">AccountLens</a><a href="mailto:hiren@flowmatos.com">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 flowmatos, Inc. · flowmatos.com</div>
+</footer>
+</body>
+</html>
